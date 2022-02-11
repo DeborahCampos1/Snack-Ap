@@ -3,4 +3,13 @@ CREATE DATABASE snack_a_log;
 
 \c snack_a_log; 
 
+CREATE TABLE snacks(
+id SERIAL PRIMARY KEY,
+name TEXT NOT NULL,
+image TEXT,
+fiber NUMERIC,
+protein NUMERIC,
+added_sugar NUMERIC,
+is_healthy boolean
 
+);

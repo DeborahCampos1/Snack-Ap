@@ -1,17 +1,19 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const snacksController = require("./controllers/snackController.js")
+
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/", );
-
-app.get("/", (require, response)=>{
-    response.send(`Get Snack'n at Snack-a-log!`);
+app.get("/", (req, res)=>{
+    res.send(`<h1>Get Snack'n at Snack-a-log!</h1>`);
 });
 
-app.get("*", (require,response)=>{
+app.use("/snacks", snacksController)
+
+app.get("*", (req,res)=>{
     res.status(404).json({error: "Page not found"})
 });
 
