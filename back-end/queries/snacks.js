@@ -30,18 +30,20 @@ const createSnack = async (snack) =>{
     }
 }
 
-// const correctSnack = (snack)=>{
-//     let name = snack.name.split(' ');
-
-//     for ( let i = 0; i < name.length; i++ ){
-//         name[i] = name[i].charAt(0).toUppercase() + name[i].slice(1).toLowerCase();
-//     }
-//     return name.join(' ');
-// }
-
+const deleteSnack = async (id)=>{
+    try{
+        const deletedSnack = await db.one(
+            "DELETE FROM snacks WHERE id = $1 RETURNING *",
+            id
+        )
+        return deletedSnack
+    }catch(err){
+        return err;
+    }
+}
 module.exports = {
     getAllSnacks,
     getOneSnack, 
     createSnack,
-   
+   deleteSnack
 };

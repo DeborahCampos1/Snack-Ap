@@ -1,7 +1,7 @@
 const express = require('express');
 const snacks = express.Router();
 
-const {getAllSnacks, getOneSnack, createSnack} = require("../queries/snacks.js");
+const {getAllSnacks, getOneSnack, createSnack , deleteSnack} = require("../queries/snacks.js");
 
 // const correctSnack = (snack)=>{
 //     let name = snack.name.split(' ');
@@ -72,14 +72,25 @@ snacks.post("/", async (req,res)=>{
                 added_sugar: postSnack.added_sugar,
                 ishealthy: postSnack.is_healthy,      
             }})
-
-
         } else {
             res.status(404).json({success: false, payload: "Snack not found"})
         }
     }catch(err){
         console.log(err);
     }
-})
+});
+snacks.delete("/:id", async (req,res)=>{
+    const { id } = req.params;
+    try{
+        const deletedSnack = await deleteSnack(id);
+        if(deletedSnack.id){
+            res.status(200).json({success: true, payload: deletedSnack})
+        }else{
+            res.status(404).json({success: false, payload: "Snack not found"})
+        }
+    }catch(err){
+        console.log(err)
+    }
+});
 
 module.exports = snacks;
