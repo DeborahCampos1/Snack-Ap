@@ -24,4 +24,7 @@ const cn = DATABASE_URL
 
 const db = pgp(cn);
 
+// db.any("SELECT * FROM snacks;").then((data)=>console.log(data))
+
+
 module.exports = db;
