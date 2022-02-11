@@ -7,8 +7,8 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req,res)=>{
-    res.send("<h1>Welcome to Snack App!</h1>")
+app.get("/", (req, res)=>{
+    res.send(`<h1>Get Snack'n at Snack-a-log!</h1>`);
 });
 
 app.use("/snacks", snacksController)
