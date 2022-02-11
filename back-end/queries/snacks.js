@@ -11,7 +11,7 @@ const getAllSnacks = async () =>{
 const getOneSnack = async (id) =>{
 
     try{
-        const snack = await db.one("SELECT * FROM snackss WHERE id=$1", id);
+        const snack = await db.one("SELECT * FROM snacks WHERE id=$1", id);
         return snack;
     }catch(err){
         return err;
