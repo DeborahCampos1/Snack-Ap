@@ -22,7 +22,7 @@ const createSnack = async (snack) =>{
     try{
         const newSnack = await db.one(
             "INSERT INTO snacks(name, image, fiber, protein, added_sugar, is_healthy) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
-            [snack.name, snack.image,snack.fiber,snack.protein,snack.addded_sugar, snack.is_healthy]
+            [snack.name, snack.image,snack.fiber,snack.protein,snack.added_sugar, snack.is_healthy]
         )
         return newSnack
     }catch(err){
@@ -30,9 +30,18 @@ const createSnack = async (snack) =>{
     }
 }
 
+// const correctSnack = (snack)=>{
+//     let name = snack.name.split(' ');
+
+//     for ( let i = 0; i < name.length; i++ ){
+//         name[i] = name[i].charAt(0).toUppercase() + name[i].slice(1).toLowerCase();
+//     }
+//     return name.join(' ');
+// }
 
 module.exports = {
     getAllSnacks,
     getOneSnack, 
-    createSnack
+    createSnack,
+   
 };
