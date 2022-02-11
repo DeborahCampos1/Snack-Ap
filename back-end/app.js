@@ -1,13 +1,18 @@
-// DEPENDENCIES
-
 const express = require("express");
-
-// CONFIGURATION
+const cors = require("cors");
 const app = express();
 
-// MIDDLEWARE
+app.use(cors());
+app.use(express.json());
 
-// ROUTES
+app.use("/", );
 
-// EXPORT
+app.get("/", (require, response)=>{
+    response.send(`Get Snack'n at Snack-a-log!`);
+});
+
+app.get("*", (require,response)=>{
+    res.status(404).json({error: "Page not found"})
+});
+
 module.exports = app;
