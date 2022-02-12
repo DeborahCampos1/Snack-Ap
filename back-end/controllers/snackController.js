@@ -1,5 +1,4 @@
 const express = require('express');
-const { is } = require('express/lib/request');
 const confirmHealth = require('../confirmHealth.js');
 const correctSnack = require('../spellCheck');
 const snacks = express.Router();
