@@ -1,10 +1,11 @@
 import heartSolid from "../assets/heart-solid.png";
 import heartOutline from "../assets/heart-regular.png";
 
-function HeartHealth({ snackHealth }) {
+//Argument for HeartHealth should be passed as {snackHealth} on /snacks/:id page
+function HeartHealth(snackHealth) {
   return (
     <>
-      <p>????</p>
+      {snackHealth ? <img src={heartSolid} alt="solid heart" /> : <img src={heartOutline} alt="heart outline" />}
     </>
   );
 }
