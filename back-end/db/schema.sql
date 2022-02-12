@@ -10,5 +10,5 @@ image TEXT ,
 fiber INTEGER DEFAULT 0,
 protein INTEGER DEFAULT 0,
 added_sugar INTEGER DEFAULT 0,
-is_healthy boolean
+is_healthy BOOLEAN
 );
