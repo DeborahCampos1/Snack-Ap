@@ -35,8 +35,8 @@ snacks.get("/:id", async (req,res)=>{
 
 snacks.post("/", async (req,res)=>{
     const { body } = req;
+    const postSnack = await createSnack(body);
     try{
-        const postSnack = await createSnack(body);
         if(postSnack.id && !postSnack.image){
             let correctedSnack = correctSnack(postSnack);
             res.status(200).json(
@@ -53,7 +53,7 @@ snacks.post("/", async (req,res)=>{
                     }
             });
 
-        } if(postSnack.id && postSnack.image){
+        } else if(postSnack.id && postSnack.image){
             let correctedSnack = correctSnack(postSnack)
             res.status(200).json(
                 {
@@ -70,7 +70,7 @@ snacks.post("/", async (req,res)=>{
             });
 
         } else {
-            res.status(404).json({success: false, payload: "Snack not found"})
+            res.status(404).json({success: false, payload: "Snack not found"});
         }
 
     }catch(err){
