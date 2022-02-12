@@ -12,9 +12,9 @@ I am a Full Stack Web Developer fellow at Pursuit with an anticipated completion
 My role in this project was to design, develop, test, debug, and deploy the integrated REST API & database using Express.js, Node.js, pg-promise and PostgreSQL.
 <span>⭐️</span>
 
-While not contructing class projects I am studying Algorithims, SQL, & rebuilding my product website.
+When not constructing class projects I am studying Algorithims, SQL, & rebuilding my product website.
 </br>
-When away from the computer I enjoy creating unique & healthy dishes, spending time in nature, & writing.
+While away from the computer I enjoy creating unique & healthy dishes, spending time in nature, & writing.
 
 <img    
     src="./images/liveclear1.png"
