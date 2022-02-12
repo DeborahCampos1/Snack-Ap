@@ -60,5 +60,5 @@ module.exports = {
     getOneSnack, 
     createSnack,
     deleteSnack,
-    updateSnack
+    updateSnack,
 };

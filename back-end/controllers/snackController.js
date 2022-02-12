@@ -3,14 +3,7 @@ const snacks = express.Router();
 
 const {getAllSnacks, getOneSnack, createSnack , deleteSnack, updateSnack} = require("../queries/snacks.js");
 
-// const correctSnack = (snack)=>{
-//     let name = snack.name.split(' ');
-
-//     for ( let i = 0; i < name.length; i++ ){
-//         name = name.substring(1).toUppercase() + name[i].slice(1).toLowerCase();
-//     }
-//     return name.join(' ');
-// }
+  
 
 
 snacks.get("/", async (req,res)=>{
@@ -34,7 +27,6 @@ snacks.get("/:id", async (req,res)=>{
 
         if(snack.id){
             res.status(200).json({success: true, payload: snack});
-            console.log(snack)
         } else {
             res.status(404).json({success: false, payload: "Snack not found"});
         }
@@ -47,30 +39,54 @@ snacks.post("/", async (req,res)=>{
     const { body } = req;
     try{
         const postSnack = await createSnack(body);
-        let correctSnacks = postSnack.name.charAt(0).toUpperCase() + postSnack.name.slice(1).toLowerCase();
-        
-        if(postSnack.id && postSnack.image){
-            
+
+        if(postSnack.id && !postSnack.image){
+              
+                const correctSnack = (postSnack)=>{
+                    let snackName = postSnack.name.split(' ');
+                
+                    for (let i = 0; i < snackName.length; i++ ){
+                    snackName[i] = snackName[i].length> 2 ? snackName[i][0].toUpperCase() + snackName[i].slice(1).toLowerCase() : snackName[i];
+                    }
+                    return snackName.join(' ');
+                }
+            let correctedSnack = correctSnack(postSnack);
+            res.status(200).json(
+                {
+                    success: true, 
+                    payload: {
+                        id: postSnack.id,
+                        name: correctedSnack,
+                        image: "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image",
+                        fiber: postSnack.fiber,
+                        protein: postSnack.protein,
+                        added_sugar: postSnack.added_sugar,
+                        is_healthy: postSnack.is_healthy,      
+                    }
+            });
+
+        } if(postSnack.id && postSnack.image){
+
+            const correctSnack = (postSnack)=>{
+                let snackName = postSnack.name.split(' ');
+              
+                for (let i = 0; i < snackName.length; i++ ){
+                  snackName[i] = snackName[i].length> 2 ? snackName[i][0].toUpperCase() + snackName[i].slice(1).toLowerCase() : snackName[i];
+                }
+                return snackName.join(' ');
+              }
+
+              let correctedSnack = correctSnack(postSnack)
+              console.log("post test line 82 " + postSnack.name);
+
             res.status(200).json({success: true, payload: {
                 id: postSnack.id,
-                name: correctSnacks,
+                name: correctedSnack,
                 image: postSnack.image,
                 fiber: postSnack.fiber,
                 protein: postSnack.protein,
                 added_sugar: postSnack.added_sugar,
-                ishealthy: postSnack.is_healthy,      
-            }})
-
-        } if(postSnack.id && !postSnack.image){
-            let correctSnacks = postSnack.name.charAt(0).toUpperCase() + postSnack.name.slice(1).toLowerCase();
-            res.status(200).json({success: true, payload: {
-                id: postSnack.id,
-                name: correctSnacks,
-                image: "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image",
-                fiber: postSnack.fiber,
-                protein: postSnack.protein,
-                added_sugar: postSnack.added_sugar,
-                ishealthy: postSnack.is_healthy,      
+                is_healthy: postSnack.is_healthy,      
             }})
         } else {
             res.status(404).json({success: false, payload: "Snack not found"})
@@ -99,7 +115,6 @@ snacks.put("/:id", async (req,res)=>{
     const updatedSnack = await updateSnack(id, body);
     if(updatedSnack.id){
         res.status(200).json(updatedSnack)
-        console.log(updatedSnack)
     }else{
         res.status(404).json({success: false, payload: "Snack not found"})
     }
