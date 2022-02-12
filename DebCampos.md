@@ -16,10 +16,6 @@ While not contructing class projects I am studying Algorithims, SQL, & rebuildin
 </br>
 When away from the computer I enjoy creating unique & healthy dishes, spending time in nature, & writing.
 
-</br>
-
-
-
 <img    
     src="./images/liveclear1.png"
     alt="Website in progress"
