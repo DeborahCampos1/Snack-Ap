@@ -17,7 +17,6 @@ When away from the computer I enjoy creating unique & healthy dishes, spending t
 
 [LinkedIn] (https://www.linkedin.com/in/debdev3)
 
-</br>
 
 <img    
     src="./images/liveclear1.png"
