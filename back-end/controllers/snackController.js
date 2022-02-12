@@ -49,7 +49,7 @@ snacks.post("/", async (req,res)=>{
                         fiber: postSnack.fiber,
                         protein: postSnack.protein,
                         added_sugar: postSnack.added_sugar,
-                        is_healthy: postSnack.is_healthy,
+                        is_healthy: confirmHealth(postSnack),
                     }
             });
 
@@ -65,7 +65,7 @@ snacks.post("/", async (req,res)=>{
                         fiber: postSnack.fiber,
                         protein: postSnack.protein,
                         added_sugar: postSnack.added_sugar,
-                        is_healthy: postSnack.is_healthy,      
+                        is_healthy: confirmHealth(postSnack),      
                     }
             });
 
