@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 /* pages */
@@ -7,9 +8,9 @@ import Home from "./Pages/Home";
 import New from "./Pages/New";
 import PageNF from "./Pages/PageNF";
 
+
 function App() {
   return (
-    <div className="App">
       <BrowserRouter>
         <NavBar />
         <main>
@@ -23,7 +24,6 @@ function App() {
           </Routes>
         </main>
       </BrowserRouter>
-    </div>
   );
 }
 

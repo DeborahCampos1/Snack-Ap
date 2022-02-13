@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res)=>{
-    res.send(`<h1>Get Snack'n at Snack-a-log!</h1>`);
+    res.send(`Get Snack'n at Snack-a-log!`);
 });
 
 app.use("/snacks", snacksController)
