@@ -14,12 +14,14 @@ function App() {
   return (
     <Router>
       <NavBar />
+      <main>
       <Routes>
         <Route path="/snacks" element={<AllSnacks />} />
         <Route path="/snacks/:id" element={<SnackDetails />}/>
         <Route path="/snacks/:id/edit" element={<SnackEdit />}/>
         <Route path="/snacks/new" element={<SnackNewForm />}/>
       </Routes>
+      </main>
     </Router>
   );
 }
