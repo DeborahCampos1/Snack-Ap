@@ -17,7 +17,7 @@ function AllSnacks() {
     })
   }, []);
 console.log(snacks)
-let snackList = snacks.map((snack , id)=>{
+let snackList = snacks.map((snack)=>{
 let heartHealth = HeartHealth(snack.is_healthy)
 
   return (
