@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import heartSolid from "../assets/heart-solid.png";
-import heartOutline from "../assets/heart-regular.png";
 import HeartHealth from "./HeartHealth";
 const API = process.env.REACT_APP_API_URL;
 
@@ -18,16 +16,16 @@ function AllSnacks() {
       console.log(err)
     })
   }, []);
-  
+console.log(snacks)
 let snackList = snacks.map((snack , id)=>{
+let heartHealth = HeartHealth(snack.is_healthy)
 
   return (
     <div className="Snack">
+      <h4>{heartHealth}</h4>
       <h4>{snack.name}</h4>
-      {snack.is_healthy ? <img alt="healthy food" src={heartSolid}/> : <img src={heartOutline} alt="unhealthy food" />}
-      <img src={snack.image}></img>
-       <Link to={`/snacks/${id}`}>{snack.name} Details</Link>
-      <li>{snack.protein}</li>
+      <img src={snack.image} alt={snack.name}></img>
+       <Link to={`/snacks/${snack.id}`}>{snack.name} Details</Link>
     </div>
   )
 });
