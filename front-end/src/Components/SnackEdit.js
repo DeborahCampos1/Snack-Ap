@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import confirmHealth from "./confirmHealth";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -8,12 +9,13 @@ function SnackEdit() {
   let { id } = useParams();
   let navigate = useNavigate();
 
+  const [healthy, setHealty] = useState();
   const [snack, setSnack] = useState({
     name: "",
     fiber: "",
     protein: "",
     added_sugar: "",
-    is_healthy: false,
+    is_healthy: healthy,
     image: ""
   });
 
@@ -27,7 +29,9 @@ function SnackEdit() {
   }, [id])
 
   let handleChange = (event) => {  
-      setSnack({ ...snack, [event.target.id]: event.target.value});
+    let health = confirmHealth(event.target.protein, event.target.fiber, event.target.added_sugar)
+    setHealty(health)
+    setSnack({ ...snack, [event.target.id]: event.target.value});
   };
 
   let handleSubmit = (event) => {

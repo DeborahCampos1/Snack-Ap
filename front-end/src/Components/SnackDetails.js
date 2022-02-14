@@ -20,7 +20,6 @@ function SnackDetails() {
         console.log(err)
       })
   }, [id])
-  console.log(snack)
 
   const handleDelete=()=>{
       axios.delete(`${API}/snacks/${id}`)

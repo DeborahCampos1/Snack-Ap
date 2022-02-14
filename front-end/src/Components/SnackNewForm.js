@@ -1,31 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import confirmHealth from "./confirmHealth";
-import HeartHealth from "./HeartHealth";
 
 import axios from "axios";
 
 const SnackNewForm = () => {
   let navi = useNavigate();
   const URL = process.env.REACT_APP_API_URL;
-  
+  const [healthy, setHealty] = useState();
   const [snack, setSnack] = useState({
     name: "",
     fiber: "",
     protein: "",
     added_sugar: "",
-    is_healthy: false,
+    is_healthy: healthy,
     image: ""
   });
 
   let handleChange = (event) => {      
-      setSnack({ ...snack, [event.target.id]: event.target.value});
+    setSnack({ ...snack, [event.target.id]: event.target.value});
   };
 
   let handleSubmit = (event) => {
-    event.preventDefault();    
+    event.preventDefault();   
+    handleNew(snack)   
+  }
+  const handleHealthy = ()=>{
+    let health = confirmHealth(Number(snack.added_sugar), Number(snack.fiber), Number(snack.protein))
+    console.log(health)
+    console.log(snack.added_sugar, snack.fiber, snack.protein)
+    setHealty(health)
+  }
 
-      axios.post(`${URL}/snacks/`, snack)
+  const handleNew = ()=>{
+    axios.post(`${URL}/snacks/`, snack)
         .then(() => {
           navi("/snacks");
         })
@@ -75,8 +83,8 @@ const SnackNewForm = () => {
       <input
         id="is_healthy"
         name="is_healthy"
-        value={snack.is_healthy}
-        onChange={handleChange}
+        value={healthy}
+        onSubmit={handleHealthy}
         placeholder="is_healthy"
       />
       <label htmlFor="image">Image:</label>

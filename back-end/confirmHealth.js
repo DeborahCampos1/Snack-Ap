@@ -4,21 +4,9 @@ const confirmHealth = (snack) => {
         return null
       } else if(snack.added_sugar < 5 && (snack.protein >=5 || snack.fiber >=5)){
         return true
-      } else if (snack.added_sugar < 5 && snack.fiber > 5){
-        return true
-      } else if (snack.added_sugar < 5 && snack.protein > 5){
-        return true
-      } else if (snack.added_sugar > 5 && snack.fiber > 5){
+      } else {
         return false
-      } else if (snack.added_sugar > 5 && snack.protein > 5){
-        return false
-      } else if(snack.added_sugar > 5 && snack.protein >=5 && snack.fiber >=5){
-        return false
-      } else if(snack.added_sugar > 5 && snack.protein < 5 && snack.fiber < 5){
-        return false
-      } else if(snack.added_sugar < 5 && snack.protein < 5 && snack.fiber < 5){
-        return false
-      }    
+      }
 };
 
 
