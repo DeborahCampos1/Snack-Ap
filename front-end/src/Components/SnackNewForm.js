@@ -8,7 +8,7 @@ import axios from "axios";
 const SnackNewForm = () => {
   let navi = useNavigate();
   const URL = process.env.REACT_APP_API_URL;
-  // const [healthy , setHealth] = useState(true)
+  
   const [snack, setSnack] = useState({
     name: "",
     fiber: "",
@@ -18,20 +18,12 @@ const SnackNewForm = () => {
     image: ""
   });
 
-  let handleChange = (event) => {
-    let health = confirmHealth(event.target.protein, event.target.fiber, event.target.added_sugar)
-      setHealth(health)
+  let handleChange = (event) => {      
       setSnack({ ...snack, [event.target.id]: event.target.value});
   };
 
-  // let handleHealthChange = ()=>{
-  //   setSnack({...snack, is_healthy: })
-  // }
-
   let handleSubmit = (event) => {
     event.preventDefault();    
-
-    console.log(healthy)
 
       axios.post(`${URL}/snacks/`, snack)
         .then(() => {

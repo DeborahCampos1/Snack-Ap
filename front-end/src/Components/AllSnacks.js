@@ -16,9 +16,9 @@ function AllSnacks() {
       console.log(err)
     })
   }, []);
-console.log(snacks)
-let snackList = snacks.map((snack)=>{
-let heartHealth = HeartHealth(snack.is_healthy)
+
+  let snackList = snacks.map((snack)=>{
+  let heartHealth = HeartHealth(snack.is_healthy)
 
   return (
     <div className="Snack">
