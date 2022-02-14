@@ -5,9 +5,7 @@ import AllSnacks from "./Components/AllSnacks";
 import SnackDetails from "./Components/SnackDetails";
 import SnackEdit from "./Components/SnackEdit";
 import SnackNewForm from "./Components/SnackNewForm";
-// let condition = HeartHealth(false);
 
-// snack.is_healthy will be passed into the above function on /snacks/:id page once completed
 
 
 function App() {
