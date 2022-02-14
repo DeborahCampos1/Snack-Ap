@@ -46,6 +46,7 @@ function SnackDetails() {
            <div>Fiber: {snack.fiber}</div>
            <div>Added Sugar: {snack.added_sugar}</div>
           <button onClick={handleDelete}>Delete</button>
+          <button><Link to={`/snacks/${id}/edit`}>Edit</Link></button>
         </article>
           <button><Link to="/snacks">Back</Link></button>
       </aside> 

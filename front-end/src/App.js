@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HeartHealth from "./Components/HeartHealth";
+// import HeartHealth from "./Components/HeartHealth";
 import NavBar from "./Components/NavBar";
 import AllSnacks from "./Components/AllSnacks";
 import SnackDetails from "./Components/SnackDetails";
