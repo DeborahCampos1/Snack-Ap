@@ -1,29 +1,27 @@
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import HeartHealth from "./Components/HeartHealth";
 import NavBar from "./Components/NavBar";
-/* pages */
-import Details from "./Pages/Details";
-import Edit from "./Pages/Edit";
-import Home from "./Pages/Home";
-import New from "./Pages/New";
+import AllSnacks from "./Components/AllSnacks";
+import SnackDetails from "./Components/SnackDetails";
+import SnackEdit from "./Components/SnackEdit";
+import SnackNewForm from "./Components/SnackNewForm";
 import PageNF from "./Pages/PageNF";
 
 
 function App() {
   return (
-      <BrowserRouter>
-        <NavBar />
-        <main>
-          main
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/:id" element={<Details />} />
-            <Route path="/new" element={<New />} />
-            <Route path="/edit" element={<Edit />} />
-            <Route path="*" element={<PageNF />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
+    <Router>
+      <NavBar />
+      <main>
+      <Routes>
+        <Route path="/snacks" element={<AllSnacks />} />
+        <Route path="/snacks/:id" element={<SnackDetails />}/>
+        <Route path="/snacks/:id/edit" element={<SnackEdit />}/>
+        <Route path="/snacks/new" element={<SnackNewForm />}/>
+         <Route path="*" element={<PageNF />} />
+      </Routes>
+      </main>
+    </Router>
   );
 }
 
