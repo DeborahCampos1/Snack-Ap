@@ -5,7 +5,7 @@ import AllSnacks from "./Components/AllSnacks";
 import SnackDetails from "./Components/SnackDetails";
 import SnackEdit from "./Components/SnackEdit";
 import SnackNewForm from "./Components/SnackNewForm";
-
+import PageNF from "./Pages/PageNF";
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
         <Route path="/snacks/:id" element={<SnackDetails />}/>
         <Route path="/snacks/:id/edit" element={<SnackEdit />}/>
         <Route path="/snacks/new" element={<SnackNewForm />}/>
+         <Route path="*" element={<PageNF />} />
       </Routes>
       </main>
     </Router>
