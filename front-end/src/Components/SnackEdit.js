@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import confirmHealth from "./confirmHealth";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -9,13 +8,11 @@ function SnackEdit() {
   let { id } = useParams();
   let navigate = useNavigate();
 
-  const [healthy, setHealty] = useState();
   const [snack, setSnack] = useState({
     name: "",
-    fiber: "",
-    protein: "",
-    added_sugar: "",
-    is_healthy: healthy,
+    fiber: 0,
+    protein: 0,
+    added_sugar: 0,
     image: ""
   });
 
@@ -23,14 +20,10 @@ function SnackEdit() {
     axios.get(`${API}/snacks/${id}`)
       .then((res)=>{
         setSnack(res.data.payload)
-      }).catch((err)=>{
-        console.log(err)
-      })
+      }).catch((err)=> navigate("*"))
   }, [id])
 
   let handleChange = (event) => {  
-    let health = confirmHealth(event.target.protein, event.target.fiber, event.target.added_sugar)
-    setHealty(health)
     setSnack({ ...snack, [event.target.id]: event.target.value});
   };
 
@@ -40,8 +33,7 @@ function SnackEdit() {
       axios.put(`${API}/snacks/${id}`, snack)
         .then(() => {
           navigate("/snacks");
-        })
-        .catch((error) => console.warn(error));
+        }).catch((err) => console.log(err));
   }
 
 
@@ -87,14 +79,6 @@ function SnackEdit() {
           value={snack.added_sugar}
           onChange={handleChange}
           placeholder="added_sugar"
-        />
-        <label htmlFor="is_healthy">Is it Healthy:</label>
-        <input
-          id="is_healthy"
-          name="is_healthy"
-          value={snack.is_healthy}
-          onChange={handleChange}
-          placeholder="is_healthy"
         />
         <label htmlFor="image">Image:</label>
         <input

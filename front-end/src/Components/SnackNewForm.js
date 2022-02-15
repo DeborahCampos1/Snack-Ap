@@ -1,43 +1,31 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import confirmHealth from "./confirmHealth";
-
 import axios from "axios";
+import { useNavigate , Link } from "react-router-dom";
+import { useState } from "react";
+
 
 const SnackNewForm = () => {
-  let navi = useNavigate();
-  const URL = process.env.REACT_APP_API_URL;
-  const [healthy, setHealty] = useState();
+  const navigate = useNavigate();
+  const API = process.env.REACT_APP_API_URL;
+
   const [snack, setSnack] = useState({
     name: "",
-    fiber: "",
-    protein: "",
-    added_sugar: "",
-    is_healthy: healthy,
-    image: ""
+    image: "",
+    fiber: 0,
+    protein: 0,
+    added_sugar: 0
   });
 
-  let handleChange = (event) => {      
+  const handleChange = (event) => {      
     setSnack({ ...snack, [event.target.id]: event.target.value});
   };
 
-  let handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();   
-    handleNew(snack)   
-  }
-  const handleHealthy = ()=>{
-    let health = confirmHealth(Number(snack.added_sugar), Number(snack.fiber), Number(snack.protein))
-    console.log(health)
-    console.log(snack.added_sugar, snack.fiber, snack.protein)
-    setHealty(health)
-  }
-
-  const handleNew = ()=>{
-    axios.post(`${URL}/snacks/`, snack)
-        .then(() => {
-          navi("/snacks");
-        })
-        .catch((error) => console.warn(error));
+  
+    axios.post(`${API}/snacks/`, snack)
+        .then((res) => {
+          navigate("/snacks");
+        }).catch((err) => navigate("*"));
   }
 
   return (
@@ -79,14 +67,6 @@ const SnackNewForm = () => {
         onChange={handleChange}
         placeholder="added_sugar"
       />
-      <label htmlFor="is_healthy">Is it Healthy:</label>
-      <input
-        id="is_healthy"
-        name="is_healthy"
-        value={healthy}
-        onSubmit={handleHealthy}
-        placeholder="is_healthy"
-      />
       <label htmlFor="image">Image:</label>
       <input
         id="image"
@@ -97,6 +77,7 @@ const SnackNewForm = () => {
         placeholder="image"
       />
       <button type="submit">Submit</button>
+      <button><Link to="/snacks">Back</Link></button>
     </form>
   );
 };

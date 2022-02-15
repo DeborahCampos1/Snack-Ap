@@ -18,6 +18,7 @@ function SnackDetails() {
         setSnack(res.data.payload)
       }).catch((err)=>{
         console.log(err)
+        navigate("*")
       })
   }, [id])
 
@@ -29,7 +30,6 @@ function SnackDetails() {
         console.log(err)
       })
   }
-  let heartHealth = HeartHealth(snack.is_healthy)
 
     return (
       <aside className="SnackDetails">
@@ -37,7 +37,7 @@ function SnackDetails() {
         <h1>Snacks</h1>
         <h2>{snack.name}</h2>
         <h4>
-          {heartHealth}
+          <HeartHealth snackHealth={snack.is_healthy} />
         </h4>
         <div><img src={snack.image} alt={snack.name}></img></div>
 
