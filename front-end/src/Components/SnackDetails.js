@@ -20,7 +20,7 @@ function SnackDetails() {
         console.log(err)
         navigate("*")
       })
-  }, [id])
+  }, [id, navigate])
 
   const handleDelete=()=>{
       axios.delete(`${API}/snacks/${id}`)
@@ -36,9 +36,7 @@ function SnackDetails() {
         <article>
         <h1>Snacks</h1>
         <h2>{snack.name}</h2>
-        <h4>
           <HeartHealth snackHealth={snack.is_healthy} />
-        </h4>
         <div><img src={snack.image} alt={snack.name}></img></div>
 
            <div>Protein: {snack.protein}</div>

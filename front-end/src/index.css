@@ -1,14 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Overlock&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Overlock&display=swap");
+
 body{
-    font-family: Overlock;
-    font: cursive;
+    font-family: Overlock , cursive;
 }
 main{
-    width: 90px;
+    width: 90%;
     margin: auto;
 }
 h1{
-    font-family: Carter One;
-    font: cursive;
+    font-family: Carter One , cursive;
 }
 nav{
     display: flex;
@@ -44,4 +45,7 @@ h4{
 .Snacks img{
     width: 150px;
 }
-
+.Snack{
+    border: 1px solid black;
+    margin: 5px;
+}
