@@ -28,6 +28,7 @@ function AllSnacks() {
         <HeartHealth snackHealth={snack.is_healthy} />
       </h4>
         </Link>
+        <h4>{snack.name}</h4>
     </div>
   )
 });
