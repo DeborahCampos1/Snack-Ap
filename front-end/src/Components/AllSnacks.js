@@ -17,10 +17,10 @@ function AllSnacks() {
     })
   }, []);
 
-  let snackList = snacks.map((snack)=>{
+  let snackList = snacks.map((snack, index)=>{
 
   return (
-    <div className="Snack">
+    <div key={index} className="Snack">
       <img src={snack.image} alt={snack.name}></img>
        <Link to={`/snacks/${snack.id}`}>
       <h4>{snack.name}</h4>

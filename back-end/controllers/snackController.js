@@ -1,9 +1,9 @@
 const express = require('express');
-const confirmHealth = require('../confirmHealth.js');
-const { correctSnack, checkName , isBoolean } = require('../validations');
 const snacks = express.Router();
-
 const {getAllSnacks, getOneSnack, createSnack , deleteSnack, updateSnack} = require("../queries/snacks.js");
+const confirmHealth = require('../confirmHealth.js');
+const { correctName, checkName } = require('../validations');
+
   
 snacks.get("/", async (req,res)=>{
 
@@ -33,46 +33,21 @@ snacks.get("/:id", async (req,res)=>{
     }
 });
 
-snacks.post("/", async (req,res)=>{
-    const { body } = req;
-    const postSnack = await createSnack(body);
+snacks.post("/", checkName, async (req,res)=>{
+    let { body } = req;
+    
     try{
-        if(postSnack.id && !postSnack.image){
-            let correctedSnack = correctSnack(postSnack);
-            res.status(200).json(
-                {
-                    success: true, 
-                    payload: {
-                        id: postSnack.id,
-                        name: correctedSnack,
-                        image: "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image",
-                        fiber: postSnack.fiber,
-                        protein: postSnack.protein,
-                        added_sugar: postSnack.added_sugar,
-                        is_healthy: confirmHealth(postSnack),
-                    }
-            });
-
-        } else if(postSnack.id && postSnack.image){
-            let correctedSnack = correctSnack(postSnack)
-            res.status(200).json(
-                {
-                    success: true, 
-                    payload: {
-                        id: postSnack.id,
-                        name: correctedSnack,
-                        image: postSnack.image,
-                        fiber: postSnack.fiber,
-                        protein: postSnack.protein,
-                        added_sugar: postSnack.added_sugar,
-                        is_healthy: confirmHealth(postSnack),      
-                    }
-            });
-
-        } else {
+        body = { ...body, is_healthy: confirmHealth(body) }
+        body = { ...body, name: correctName(body.name)}
+        if(!body.image){
+            body = { ...body, image: "https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image"};
+        }
+        const postSnack = await createSnack(body);
+        if(postSnack.id){
+            res.status(200).json({success: true, payload: postSnack});
+        }  else {
             res.status(404).json({success: false, payload: "Snack not found"});
         }
-
     }catch(err){
         console.log(err);
     }
@@ -94,12 +69,19 @@ snacks.delete("/:id", async (req,res)=>{
 
 snacks.put("/:id", async (req,res)=>{
     const { id } = req.params;
-    const { body } = req;
-    const updatedSnack = await updateSnack(id, body);
-    if(updatedSnack.id){
-        res.status(200).json(updatedSnack)
-    }else{
-        res.status(404).json({success: false, payload: "Snack not found"})
+    let { body } = req;
+    try{
+        body = { ...body, is_healthy: confirmHealth(body) }
+        body = { ...body, name: correctName(body.name)}
+
+        const updatedSnack = await updateSnack(id, body);
+        if(updatedSnack.id){
+            res.status(200).json({success: true , payload: updatedSnack})
+        }else{
+            res.status(404).json({success: false, payload: "Snack not found"})
+        }
+    }catch(err){
+        console.log(err)
     }
 })
 

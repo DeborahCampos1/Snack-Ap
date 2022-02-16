@@ -21,7 +21,7 @@ function SnackEdit() {
       .then((res)=>{
         setSnack(res.data.payload)
       }).catch((err)=> navigate("*"))
-  }, [id])
+  }, [id, navigate])
 
   let handleChange = (event) => {  
     setSnack({ ...snack, [event.target.id]: event.target.value});
