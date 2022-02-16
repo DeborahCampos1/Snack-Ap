@@ -56,7 +56,6 @@ describe("Show Page", () => {
     it("has a 'back' button", () => {
       cy.get("button")
         .contains("Back")
-        .parent()
         .should("have.attr", "href", `/snacks`);
     });
 

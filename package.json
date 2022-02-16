@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/joinpursuit/bookmarks-mono-repo/issues"
   },
-  "homepage": "https://github.com/joinpursuit/bookmarks-mono-repo#readme"
+  "homepage": "https://github.com/joinpursuit/bookmarks-mono-repo#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "pg-promise": "^10.11.1"
+  }
 }
