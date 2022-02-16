@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./Components/NavBar";
+import Home from "./Components/Home";
 import AllSnacks from "./Components/AllSnacks";
 import SnackDetails from "./Components/SnackDetails";
 import SnackEdit from "./Components/SnackEdit";
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <main>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/snacks" element={<AllSnacks />} />
         <Route path="/snacks/:id" element={<SnackDetails />}/>
         <Route path="/snacks/:id/edit" element={<SnackEdit />}/>
